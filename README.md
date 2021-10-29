@@ -3,26 +3,29 @@
 ![Screenshot](https://raw.githubusercontent.com/CSalih/CSalih/main/public/screenshot.png)  
 Vue component that provides a convenient use of the HTML drag and drop interface.
 
-
 ## Usage
+
 Npm
-``` bash
+
+```bash
 npm install vue-meeting-selector --save
 ```
+
 Yarn
-``` bash
+
+```bash
 yarn add vue-meeting-selector
 ```
 
 Include in Vue
-``` js
-import VueMeetingSelector from 'vue-meeting-selector';
+
+```js
+import VueMeetingSelector from "vue-meeting-selector";
 ```
 
-
 ## Documentation
-Need a documentation? Please create an issue.
 
+Need a documentation? Please create an issue.
 
 ## Project setup
 
