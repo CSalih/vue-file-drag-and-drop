@@ -1,28 +1,27 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Vue File Drag and drop</h1>
+    <p>Vue component that provides a convenient use of the HTML drag and drop interface</p>
+
+    <vue-file-drag-and-drop
+      v-model="files"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import VueFileDragAndDrop from "@/components/VueFileDragAndDrop.vue"
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    VueFileDragAndDrop
+  },
+  data() {
+    return {
+      files: []
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
