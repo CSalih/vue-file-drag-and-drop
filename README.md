@@ -1,6 +1,6 @@
 # Vue File drag and drop
 
-![Screenshot](https://raw.githubusercontent.com/CSalih/CSalih/main/public/screenshot.png)  
+![Screenshot](https://raw.githubusercontent.com/CSalih/vue-file-drag-and-drop/main/public/screenshot.png)  
 Vue component that provides a convenient use of the HTML drag and drop interface.
 
 ## Usage
