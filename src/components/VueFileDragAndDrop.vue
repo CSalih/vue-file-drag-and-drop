@@ -1,6 +1,5 @@
 <template>
   <div class="
-            v-file-drag-and-drop
             relative
             block
             w-full
@@ -21,48 +20,35 @@
       hidden
     />
     <div v-if="hasFiles">
-      <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-        <button
-          type="button"
-          class="text-lke rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
-          @click="resetFiles"
-        >
-          <span class="sr-only">Close</span>
-          <svg class="h-6 w-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
+      <div class="absolute top-0 right-0 pt-1 pr-1" >
+        <button type="button" @click="resetFiles">
+          <slot name="clear-all">
+            <span class="sr-only">Close</span>
+            <trash-icon class="h-6 w-6 rounded-md text-gray-400 hover:text-white hover:text-red-500 focus:outline-none" />
+          </slot>
         </button>
       </div>
-      <div>
-        <div class="w-full h-full flex flex-col">
 
-          <ul class="flex flex-1 flex-wrap -m-1">
-            <li
-              v-for="(image, index) in previewImages"
-              :key="index"
-              class="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24"
-            >
-              <img class="max-h-12" :src="image.url" :alt="image.name"/>
-            </li>
-          </ul>
-
-
-        </div>
-        <span
-          class="delete"
-          style="color: white"
-          @click="deleteFileByIndex(index)"
+      <ul role="list" class="flex flex-1 flex-wrap p-5">
+        <li
+          v-for="(image, index) in previewImages"
+          :key="index"
+          class="block p-1 w-full sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-32"
         >
-          Add more
-        </span>
-        <div
-          v-if="isFileAppendPossible"
-          class="plus"
-          @click="showFileUploadDialog"
+          <slot name="filePreview">
+            <file-preview :file="image" @on-delete-click="deleteFileByIndex(index)" />
+          </slot>
+        </li>
+        <li
+            v-if="isFileAppendPossible"
+            @click="showFileUploadDialog"
+            class="h-32"
         >
-          +
-        </div>
-      </div>
+          <slot name="addFile">
+            <plus-circle-icon class="h-32 w-8 ml-5 items-center text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer" />
+          </slot>
+        </li>
+      </ul>
     </div>
 
     <div v-else class="text-center" @click="showFileUploadDialog">
@@ -78,11 +64,14 @@
 </template>
 
 <script>
-import FolderOpenIcon from "./FolderOpenIcon";
+import FolderOpenIcon from "./icons/FolderOpenIcon";
+import PlusCircleIcon from "@/components/icons/PlusCircleIcon";
+import TrashIcon from "@/components/icons/TrashIcon";
+import FilePreview from "@/components/FilePreview";
 
 export default {
   name: "VueFileDragAndDrop",
-  components: { FolderOpenIcon },
+  components: {FilePreview, TrashIcon, PlusCircleIcon, FolderOpenIcon },
   props: {
     uploadMsg: {
       type: String,
@@ -122,11 +111,15 @@ export default {
         if (file.type.startsWith("image")) {
           return {
             name: file.name,
+            size: file.size,
             url: URL.createObjectURL(file)
           };
         }
-        // TODO: Create preview for not image objects
-        return require("@/assets/logo.png");
+        return {
+          name: file.name,
+          size: null,
+          url: null,
+        };
       });
     }
   },

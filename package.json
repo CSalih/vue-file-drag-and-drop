@@ -5,13 +5,12 @@
   "description": "Vue component that provides a convenient use of the HTML drag and drop interface",
   "author": "Salih Candir <salih@live.at>",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve src/main.js",
+    "build:lib": "vue-cli-service build --target lib --name vue-file-drag-and-drop src/lib.js",
     "lint": "yarn lint:es && yarn lint:style",
     "lint:es": "vue-cli-service lint --fix",
     "lint:style": "prettier --write --ignore-unknown .",
-    "lint:check": "vue-cli-service lint --no-fix && prettier --check --ignore-unknown .",
-    "build:lib": "vue-cli-service build --target lib --name vue-file-drag-and-drop src/components/index.js"
+    "lint:check": "vue-cli-service lint --no-fix && prettier --check --ignore-unknown ."
   },
   "main": "./dist/vue-file-drag-and-drop.common.js",
   "files": [
