@@ -1,8 +1,17 @@
 <template>
-  <div
-    class="v-file-drag-and-drop"
-    @drop.prevent="onFileDrop"
-  >
+  <div class="
+            v-file-drag-and-drop
+            relative
+            block
+            w-full
+            border-2 border-gray-300 border-dashed
+            rounded-lg
+            text-center
+            hover:border-gray-400
+            focus:outline-none
+      "
+       @drop.prevent="onFileDrop"
+    >
     <input
       type="file"
       ref="fileUploadInput"
@@ -11,57 +20,66 @@
       @change="onFileInputChanged"
       hidden
     />
-    <div v-if="hasFiles" >
-
-
-      <button type="button" class="clearButton" @click="resetFiles">
-        x
-      </button>
-
-
-      <div class="imageHolder" >
-        <div class="mt-6 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-8">
-          <div class="col-span-1 flex justify-center py-8 px-8 bg-gray-50" v-for="(image, index) in previewImages" :key="index">
-            <img class="max-h-12" :src="image.url" :alt="image.name"/>
-          </div>
-        </div>
-        <span class="delete" style="color: white" @click="deleteFileByIndex(index)">
-          <svg
-            class="icon"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-            />
+    <div v-if="hasFiles">
+      <div class="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+        <button
+          type="button"
+          class="text-lke rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
+          @click="resetFiles"
+        >
+          <span class="sr-only">Close</span>
+          <svg class="h-6 w-6" x-description="Heroicon name: outline/x" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
+        </button>
+      </div>
+      <div>
+        <div class="w-full h-full flex flex-col">
+
+          <ul class="flex flex-1 flex-wrap -m-1">
+            <li
+              v-for="(image, index) in previewImages"
+              :key="index"
+              class="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24"
+            >
+              <img class="max-h-12" :src="image.url" :alt="image.name"/>
+            </li>
+          </ul>
+
+
+        </div>
+        <span
+          class="delete"
+          style="color: white"
+          @click="deleteFileByIndex(index)"
+        >
+          Add more
         </span>
-        <div v-if="isFileAppendPossible" class="plus" @click="showFileUploadDialog">+</div>
+        <div
+          v-if="isFileAppendPossible"
+          class="plus"
+          @click="showFileUploadDialog"
+        >
+          +
+        </div>
       </div>
     </div>
 
     <div v-else class="text-center" @click="showFileUploadDialog">
-      <slot name="empty-files-header" />
-      <slot name="empty-files-body" >
-        <button
-          type="button"
-          class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none"
-        >
-        <FolderOpenIcon class="mx-auto h-12 w-12 text-gray-400" />
+      <slot name="empty-files-header"/>
+      <slot name="empty-files-body">
+        <button type="button" class="p-12 w-full">
+          <FolderOpenIcon class="mx-auto h-12 w-12 text-gray-400"/>
         </button>
       </slot>
+      <slot name="empty-files-footer"/>
     </div>
-    <slot name="empty-files-footer" />
   </div>
 </template>
 
 <script>
-import FolderOpenIcon from './FolderOpenIcon'
+import FolderOpenIcon from "./FolderOpenIcon";
+
 export default {
   name: "VueFileDragAndDrop",
   components: { FolderOpenIcon },
@@ -76,30 +94,30 @@ export default {
     },
     allowedMimeTypes: {
       type: Array,
-      default: () => ['*'],
+      default: () => ["*"]
     },
     allowMultiple: {
       type: Boolean,
       default: true
     }
   },
-  data() {
+  data () {
     return {
       errorMessage: "",
-      files: [],
+      files: []
     };
   },
   computed: {
-    hasFiles() {
+    hasFiles () {
       return this.files.length > 0;
     },
-    isFileAppendPossible() {
+    isFileAppendPossible () {
       if (!this.maxFilesAllowed) {
         return true;
       }
-      return this.files.length < this.maxFilesAllowed
+      return this.files.length < this.maxFilesAllowed;
     },
-    previewImages() {
+    previewImages () {
       return this.files.map((file) => {
         if (file.type.startsWith("image")) {
           return {
@@ -108,55 +126,55 @@ export default {
           };
         }
         // TODO: Create preview for not image objects
-        return require("@/assets/logo.png")
-      })
+        return require("@/assets/logo.png");
+      });
     }
   },
   methods: {
-    showFileUploadDialog() {
+    showFileUploadDialog () {
       this.$refs.fileUploadInput.click();
     },
-    onFileDrop(event) {
+    onFileDrop (event) {
       if (event.dataTransfer.items) {
         // Use DataTransferItemList interface to access the file(s)
         for (let item of event.dataTransfer.items) {
           // If dropped items aren't files, reject them
-          if (item.kind === 'file') {
+          if (item.kind === "file") {
             this.appendFile(item.getAsFile());
           }
         }
       } else {
         // Use DataTransfer interface to access the file(s)
-        for (let file of  event.dataTransfer.files) {
+        for (let file of event.dataTransfer.files) {
           this.appendFile(file);
         }
       }
     },
-    onFileInputChanged(event) {
+    onFileInputChanged (event) {
       // only target files?
-      for (let file of  event.target.files) {
+      for (let file of event.target.files) {
         this.appendFile(file);
       }
     },
-    resetFiles() {
+    resetFiles () {
       this.setFiles([]);
     },
-    deleteFileByIndex(index) {
+    deleteFileByIndex (index) {
       this.files.splice(index, 1);
       this.emitFileIsChanged();
     },
-    appendFile(file) {
-      this.files.push(file)
+    appendFile (file) {
+      this.files.push(file);
       this.$emit("file-append", file);
       this.emitFileIsChanged();
     },
-    setFiles(files) {
+    setFiles (files) {
       this.files = files;
       this.emitFileIsChanged();
     },
-    emitFileIsChanged() {
+    emitFileIsChanged () {
       this.$emit("input", this.files);
     }
-  },
+  }
 };
 </script>

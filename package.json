@@ -1,54 +1,44 @@
 {
   "name": "vue-file-drag-and-drop",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "description": "Vue component that provides a convenient use of the HTML drag and drop interface",
   "author": "Salih Candir <salih@live.at>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "yarn lint:es && yarn lint:style",
+    "lint:es": "vue-cli-service lint --fix",
+    "lint:style": "prettier --write --ignore-unknown .",
+    "lint:check": "vue-cli-service lint --no-fix && prettier --check --ignore-unknown .",
     "build:lib": "vue-cli-service build --target lib --name vue-file-drag-and-drop src/components/index.js"
   },
   "main": "./dist/vue-file-drag-and-drop.common.js",
   "files": [
     "dist/*",
     "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "README.md"
   ],
-  "dependencies": {
+  "peerDependencies": {
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-cli-plugin-tailwind": "~2.0.6",
-    "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9",
+    "babel-eslint": "^10.1.0",
     "core-js": "^3.6.5",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^6.2.2",
     "postcss": "^7",
+    "prettier": "2.4.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
+    "vue": "^2.6.11",
+    "vue-cli-plugin-tailwind": "~2.0.6",
     "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
   },
   "browserslist": [
     "> 1%",
@@ -60,11 +50,16 @@
     "vuejs",
     "drag-and-drop",
     "file",
-    "image"
+    "image",
+    "tailwind"
   ],
-  "license": "MIT",
+  "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/csalih/vue-meeting-selector.git"
-  }
+    "url": "git+https://github.com/CSalih/vue-file-drag-and-drop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CSalih/vue-file-drag-and-drop/issues"
+  },
+  "homepage": "https://github.com/CSalih/vue-file-drag-and-drop#readme"
 }
