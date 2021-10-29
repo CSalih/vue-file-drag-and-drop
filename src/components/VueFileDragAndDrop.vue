@@ -97,10 +97,6 @@ export default {
   name: "VueFileDragAndDrop",
   components: { FilePreview, TrashIcon, PlusCircleIcon, FolderOpenIcon },
   props: {
-    uploadMsg: {
-      type: String,
-      default: "Click to upload or drop your images here",
-    },
     maxFilesAllowed: {
       type: String,
       default: null,
@@ -116,7 +112,6 @@ export default {
   },
   data() {
     return {
-      errorMessage: "",
       files: [],
     };
   },
