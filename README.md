@@ -3,9 +3,43 @@
 ![Screenshot](https://raw.githubusercontent.com/CSalih/vue-file-drag-and-drop/main/public/screenshot.png)  
 Vue component that provides a convenient use of the HTML drag and drop interface.
 
+> Note: This component is may not ready for use in productive systems, use it carefully.
+
 ## Usage
 
-Not published
+### Install package
+
+#### Npm
+
+```bash
+npm install @csalih/vue-file-drag-and-drop --registry=https://npm.pkg.github.com
+```
+
+#### Yarn
+
+```bash
+yarn add @csalih/vue-file-drag-and-drop --registry=https://npm.pkg.github.com
+```
+
+### Use the Component
+
+```vue
+<template>
+  <vue-file-drag-and-drop />
+</template>
+
+<script>
+import "@csalih/vue-file-drag-and-drop/dist/app.css";
+import VueFileDragAndDrop from "@csalih/vue-file-drag-and-drop";
+
+export default {
+  name: "HelloWorld",
+  components: {
+    VueFileDragAndDrop,
+  },
+};
+</script>
+```
 
 ## Documentation
 
