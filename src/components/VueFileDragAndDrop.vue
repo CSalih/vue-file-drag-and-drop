@@ -1,17 +1,5 @@
 <template>
-  <div
-    class="
-      relative
-      block
-      w-full
-      border-2 border-gray-300 border-dashed
-      rounded-lg
-      text-center
-      hover:border-gray-400
-      focus:outline-none
-    "
-    @drop.prevent="onFileDrop"
-  >
+  <div class="vue-file-drag-and-drop" @drop.prevent="onFileDrop">
     <input
       type="file"
       ref="fileUploadInput"
@@ -20,30 +8,21 @@
       @change="onFileInputChanged"
       hidden
     />
-    <div v-if="hasFiles">
-      <div class="absolute top-0 right-0 pt-1 pr-1">
+    <div class="gallery" v-if="hasFiles">
+      <div class="clear-all">
         <button type="button" @click="resetFiles">
           <slot name="clear-all">
             <span class="sr-only">Close</span>
-            <trash-icon
-              class="
-                h-6
-                w-6
-                rounded-md
-                text-gray-400
-                hover:text-white hover:text-red-500
-                focus:outline-none
-              "
-            />
+            <trash-icon class="trash-icon" />
           </slot>
         </button>
       </div>
 
-      <ul role="list" class="flex flex-1 flex-wrap p-5">
+      <ul role="list" class="list">
         <li
           v-for="(image, index) in previewImages"
           :key="index"
-          class="block p-1 w-full sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-32"
+          class="list-item"
         >
           <slot name="filePreview">
             <file-preview
@@ -55,31 +34,19 @@
         <li
           v-if="isFileAppendPossible"
           @click="showFileUploadDialog"
-          class="h-32"
+          class="list-item add-button"
         >
           <slot name="addFile">
-            <plus-circle-icon
-              class="
-                h-32
-                w-8
-                ml-5
-                items-center
-                text-gray-400
-                hover:text-gray-500
-                focus:outline-none
-                cursor-pointer
-              "
-            />
+            <plus-circle-icon class="plus-circle-icon" />
           </slot>
         </li>
       </ul>
     </div>
-
-    <div v-else class="text-center" @click="showFileUploadDialog">
+    <div v-else class="gallery-placeholder" @click="showFileUploadDialog">
       <slot name="empty-files-header" />
       <slot name="empty-files-body">
-        <button type="button" class="p-12 w-full">
-          <FolderOpenIcon class="mx-auto h-12 w-12 text-gray-400" />
+        <button type="button" class="folder-open-button">
+          <FolderOpenIcon class="folder-open-icon" />
         </button>
       </slot>
       <slot name="empty-files-footer" />
@@ -190,3 +157,33 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.vue-file-drag-and-drop {
+  @apply relative block w-full border-2 border-gray-300 border-dashed rounded-lg text-center hover:border-gray-400 focus:outline-none;
+}
+.vue-file-drag-and-drop .gallery .clear-all {
+  @apply absolute top-0 right-0 pt-1 pr-1;
+}
+.vue-file-drag-and-drop .gallery .list {
+  @apply flex flex-1 flex-wrap p-5;
+}
+.vue-file-drag-and-drop .gallery .list .list-item {
+  @apply block p-1 w-full h-32 sm:w-1/3 md:w-1/4 lg:w-1/6;
+}
+.vue-file-drag-and-drop .gallery .list .list-item.add-button {
+  @apply h-32;
+}
+.vue-file-drag-and-drop .folder-open-button {
+  @apply p-12 w-full;
+}
+.vue-file-drag-and-drop .folder-open-icon {
+  @apply mx-auto h-12 w-12 text-gray-400;
+}
+.vue-file-drag-and-drop .trash-icon {
+  @apply h-6 w-6 rounded-md text-gray-400 hover:text-white hover:text-red-500 focus:outline-none;
+}
+.vue-file-drag-and-drop .plus-circle-icon {
+  @apply h-32 w-8 ml-5 items-center text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer;
+}
+</style>
