@@ -1,5 +1,5 @@
 {
-  "name": "@csalih/vue-file-drag-and-drop",
+  "name": "vue-file-drag-and-drop",
   "version": "0.1.0",
   "license": "MIT",
   "description": "Vue component that provides a convenient use of the HTML drag and drop interface",
