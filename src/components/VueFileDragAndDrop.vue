@@ -24,7 +24,7 @@
           :key="index"
           class="list-item"
         >
-          <slot name="filePreview">
+          <slot name="file-preview">
             <file-preview
               :file="image"
               @on-delete-click="deleteFileByIndex(index)"
@@ -36,20 +36,20 @@
           @click="showFileUploadDialog"
           class="list-item add-button"
         >
-          <slot name="addFile">
+          <slot name="add-file">
             <plus-circle-icon class="plus-circle-icon" />
           </slot>
         </li>
       </ul>
     </div>
     <div v-else class="gallery-placeholder" @click="showFileUploadDialog">
-      <slot name="empty-files-header" />
-      <slot name="empty-files-body">
+      <slot name="gallery-placeholder-header" />
+      <slot name="gallery-placeholder-body">
         <button type="button" class="folder-open-button">
           <FolderOpenIcon class="folder-open-icon" />
         </button>
       </slot>
-      <slot name="empty-files-footer" />
+      <slot name="gallery-placeholder-footer" />
     </div>
   </div>
 </template>
