@@ -1,6 +1,6 @@
 {
   "name": "vue-file-drag-and-drop",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Vue component that provides a convenient use of the HTML drag and drop interface",
   "author": "Salih Candir <salih@live.at>",
