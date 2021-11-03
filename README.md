@@ -29,8 +29,9 @@ yarn add @csalih/vue-file-drag-and-drop --registry=https://npm.pkg.github.com
 </template>
 
 <script>
-import "@csalih/vue-file-drag-and-drop/dist/app.css";
-import VueFileDragAndDrop from "@csalih/vue-file-drag-and-drop";
+// if you do have Tailwind 2 you don't need to import this css
+import "vue-file-drag-and-drop/dist/vue-file-drag-and-drop.css";
+import VueFileDragAndDrop from "vue-file-drag-and-drop";
 
 export default {
   name: "HelloWorld",
