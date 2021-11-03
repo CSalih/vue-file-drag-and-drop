@@ -65,7 +65,7 @@ export default {
   components: { FilePreview, TrashIcon, PlusCircleIcon, FolderOpenIcon },
   props: {
     maxFilesAllowed: {
-      type: String,
+      type: Number,
       default: null,
     },
     allowedMimeTypes: {
