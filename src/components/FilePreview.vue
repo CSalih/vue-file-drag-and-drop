@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import TrashIcon from "@/components/icons/TrashIcon";
-import PhotographIcon from "@/components/icons/PhotographIcon";
+import TrashIcon from "./icons/TrashIcon";
+import PhotographIcon from "./icons/PhotographIcon";
 export default {
   name: "FilePreview",
   components: { PhotographIcon, TrashIcon },

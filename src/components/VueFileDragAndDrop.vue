@@ -56,9 +56,9 @@
 
 <script>
 import FolderOpenIcon from "./icons/FolderOpenIcon";
-import PlusCircleIcon from "@/components/icons/PlusCircleIcon";
-import TrashIcon from "@/components/icons/TrashIcon";
-import FilePreview from "@/components/FilePreview";
+import PlusCircleIcon from "./icons/PlusCircleIcon";
+import TrashIcon from "./icons/TrashIcon";
+import FilePreview from "./FilePreview";
 
 export default {
   name: "VueFileDragAndDrop",
