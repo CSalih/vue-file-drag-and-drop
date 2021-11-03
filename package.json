@@ -10,7 +10,9 @@
     "lint": "yarn lint:es && yarn lint:style",
     "lint:es": "vue-cli-service lint --fix",
     "lint:style": "prettier --write --ignore-unknown .",
-    "lint:check": "vue-cli-service lint --no-fix && prettier --check --ignore-unknown ."
+    "lint:check": "vue-cli-service lint --no-fix && prettier --check --ignore-unknown .",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "main": "./dist/vue-file-drag-and-drop.common.js",
   "files": [
@@ -22,12 +24,18 @@
     "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/vue": "^6.3.12",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "autoprefixer": "^9",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.3",
     "core-js": "^3.6.5",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^8.3.0",
@@ -37,6 +45,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "vue": "^2.6.11",
     "vue-cli-plugin-tailwind": "~2.0.6",
+    "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
@@ -60,5 +69,6 @@
   "bugs": {
     "url": "https://github.com/CSalih/vue-file-drag-and-drop/issues"
   },
-  "homepage": "https://github.com/CSalih/vue-file-drag-and-drop#readme"
+  "homepage": "https://github.com/CSalih/vue-file-drag-and-drop#readme",
+  "dependencies": {}
 }
