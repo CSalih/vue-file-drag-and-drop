@@ -3,7 +3,6 @@
     class="vue-file-drag-and-drop"
     @drop.prevent="onFileDrop"
     @dragover.prevent
-    draggable="true"
   >
     <input
       type="file"
