@@ -2,7 +2,7 @@
   <div
     class="vue-file-drag-and-drop"
     @drop.prevent="onFileDrop"
-    @dragover.prevent
+    @dragover.prevent="onDragover"
   >
     <input
       type="file"
@@ -132,6 +132,9 @@ export default {
           this.appendFile(file);
         }
       }
+    },
+    onDragover(event) {
+      event.dataTransfer.dropEffect = "move";
     },
     onFileInputChanged(event) {
       // only target files?
